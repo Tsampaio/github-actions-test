@@ -1,0 +1,56 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    # strategy:
+    #   matrix:
+    #     node-version: [12.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: |
+        npm i
+      # cd client
+      # npm i
+      # CI=false npm run build
+      # cd ..
+      # touch .env
+      # echo GENERATE_SOURCEMAP = ${{ secrets.GENERATE_SOURCEMAP }} >> .env
+      # echo DATABASE = ${{ secrets.DATABASE }} >> .env
+      # echo PORT=${{ secrets.PORT }} >> .env
+      # echo JWT_SECRET = ${{ secrets.JWT_SECRET }} >> .env
+      # echo JWT_EXPIRES_IN = ${{ secrets.JWT_EXPIRES_IN }} >> .env
+      # echo JWT_COOKIE_EXPIRES_IN = ${{ secrets.JWT_COOKIE_EXPIRES_IN }} >> .env
+      # echo EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }} >> .env
+      # echo EMAIL_PASSWORD = ${{ secrets.EMAIL_PASSWORD }} >> .env
+      # echo EMAIL_HOST = ${{ secrets.EMAIL_HOST }} >> .env
+      # echo EMAIL_PORT = ${{ secrets.EMAIL_PORT }} >> .env
+      # echo EMAIL_FROM = ${{ secrets.EMAIL_FROM }} >> .env
+      # echo SENDGRID_USERNAME = ${{ secrets.SENDGRID_USERNAME }} >> .env
+      # echo SENDGRID_PASSWORD = ${{ secrets.SENDGRID_PASSWORD }} >> .env
+      # echo SENDINBLUE_USERNAME = ${{ secrets.SENDINBLUE_USERNAME }} >> .env
+      # echo SENDINBLUE_PASSWORD = ${{ secrets.SENDINBLUE_PASSWORD }} >> .env
+      # echo BRAINTREE_MERCHANT_ID = ${{ secrets.BRAINTREE_MERCHANT_ID }} >> .env
+      # echo BRAINTREE_PUBLIC_KEY = ${{ secrets.BRAINTREE_PUBLIC_KEY }} >> .env
+      # echo BRAINTREE_PRIVATE_KEY = ${{ secrets.BRAINTREE_PRIVATE_KEY }} >> .env
+      # pm2 stop 0
+      # pm2 start 0
+      # pm2 save
+      # sudo service nginx restart
