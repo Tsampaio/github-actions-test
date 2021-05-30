@@ -6,10 +6,14 @@ function App() {
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    const name = axios.get('/names');
+    getNames();
+  }, []);
 
-    setUsername(name)
-  }, [])
+  const getNames = async () => {
+    const response = await axios.get('/names');
+    console.log(response)
+    setUsername(response.data)
+  }
 
   return (
     <div className="App">
